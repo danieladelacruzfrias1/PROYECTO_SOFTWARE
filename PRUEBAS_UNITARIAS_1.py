@@ -4,7 +4,8 @@ from Notas import NotasApp
 
 class TestNotasApp(unittest.TestCase):
     def setUp(self):
-        self.app = NotasApp()
+        root = MagicMock()  # Crear un objeto simulado para 'root'
+        self.app = NotasApp(root)  # Proporcionar el objeto simulado como argumento
 
     def test_agregar_nota(self):
         self.app.cursor = MagicMock()
@@ -22,4 +23,5 @@ class TestNotasApp(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
 

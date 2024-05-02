@@ -68,3 +68,6 @@ root = tk.Tk()
 app = NotasApp(root)
 root.mainloop()
 
+
+
+
