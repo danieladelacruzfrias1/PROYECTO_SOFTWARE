@@ -17,6 +17,9 @@ class NotasApp:
         self.edit_button = tk.Button(root, text="Editar Nota", command=self.edit_nota)
         self.edit_button.pack()
 
+        self.delete_button = tk.Button(root, text="Eliminar Nota", command=self.delete_nota)
+        self.delete_button.pack()
+
         self.view_button = tk.Button(root, text="Ver Notas", command=self.view_notas)
         self.view_button.pack()
 
@@ -45,6 +48,12 @@ class NotasApp:
         else:
             messagebox.showinfo("Error", "El contenido es requerido")
 
+    def delete_nota(self):
+        titulo = simpledialog.askstring("Eliminar Nota", "Ingrese el título de la nota que desea eliminar:")
+        self.cursor.execute('DELETE FROM notas WHERE titulo=?', (titulo,))
+        self.conn.commit()
+        messagebox.showinfo("Hecho", "Nota eliminada")
+
     def view_notas(self):
         self.cursor.execute('SELECT * FROM notas')
         notas = self.cursor.fetchall()
@@ -58,3 +67,4 @@ class NotasApp:
 root = tk.Tk()
 app = NotasApp(root)
 root.mainloop()
+
